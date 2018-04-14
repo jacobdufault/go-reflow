@@ -23,7 +23,7 @@ Usage of go-reflow:
 # Example
 
 ```
-$ echo " # foo bar baz a baaa barara" | ./go-reflow -width 20
+$ echo " # foo bar baz a baaa barara" | go-reflow -width 20
  # foo bar baz a
  # baaa barara
 ```
