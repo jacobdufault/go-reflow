@@ -98,6 +98,10 @@ func stringLength(s string) int {
 }
 
 func reflow(inputLines []string) string {
+	if len(inputLines) == 0 {
+		return ""
+	}
+
 	indent := getIndent(inputLines[0])
 
 	words, commentType := getWordsLessCommentMarkers(inputLines)
