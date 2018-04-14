@@ -17,6 +17,7 @@ package main
 import (
 	"bufio"
 	"flag"
+	"fmt"
 	"os"
 	"strings"
 	"unicode"
@@ -148,5 +149,5 @@ func main() {
 		panic(err)
 	}
 
-	println(reflow(lines))
+	fmt.Println(reflow(lines))
 }
