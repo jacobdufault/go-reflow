@@ -54,7 +54,7 @@ func stripCommentMarker(word string, commentType commentMarker) (string, comment
 	return word, ""
 }
 
-// Removes all comment markers from `txt`.
+// Removes all words in lines and removes comment markers.
 func getWordsLessCommentMarkers(lines []string) ([]string, commentMarker) {
 	words := make([]string, 0)
 
@@ -112,7 +112,7 @@ func reflow(inputLines []string) string {
 
 	lines := make([]string, 0)
 	lines = append(lines, indent)
-	var hasWordInLine bool
+	var hasWordForLine bool
 
 	for _, word := range words {
 		wordLength := stringLength(word)
@@ -122,20 +122,17 @@ func reflow(inputLines []string) string {
 		// will cause it to overflow the target length, start a new line.
 		//
 		// add 1 for space
-		if hasWordInLine &&
-			lineLength+1+wordLength > *targetLength {
-
+		if hasWordForLine && lineLength+1+wordLength > *targetLength {
 			lines = append(lines, indent)
-			hasWordInLine = false
+			hasWordForLine = false
 		}
 
-		// Add the world to the line
-		space := ""
-		if hasWordInLine {
-			space = " "
+		// Add the word to the line
+		if hasWordForLine {
+			lines[len(lines)-1] += " "
 		}
-		lines[len(lines)-1] += space + word
-		hasWordInLine = true
+		lines[len(lines)-1] += word
+		hasWordForLine = true
 	}
 
 	return strings.Join(lines, "\n")
